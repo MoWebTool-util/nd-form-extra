@@ -17,13 +17,17 @@ module.exports = function() {
     _widgets[name] = instance;
   }
 
-  host.after('render', function() {
-    host.$('select').each(function(i, field) {
+  function renderWidget() {
+    host.$('select:not([data-rendered])').each(function(i, field) {
+      field.setAttribute('data-rendered', 'true');
       addWidget(field.name, new Select({
         trigger: field
       }).render());
     });
-  });
+  }
+
+  host.after('render', renderWidget);
+  host.after('addField', renderWidget);
 
   plugin.getWidget = function(name) {
     return _widgets[name];

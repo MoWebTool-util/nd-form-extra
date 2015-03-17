@@ -26,14 +26,17 @@ module.exports = function() {
     });
   }
 
-  host.after('render', function() {
+  function renderWidget() {
     host.$('[type="file"]').each(function(i, field) {
       field.type = 'hidden';
       addWidget(field.name, new Upload({
         trigger: field
       }).render());
     });
-  });
+  }
+
+  host.after('render', renderWidget);
+  host.after('addField', renderWidget);
 
   plugin.getWidget = function(name) {
     return _widgets[name];

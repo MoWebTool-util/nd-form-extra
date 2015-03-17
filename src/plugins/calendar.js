@@ -17,7 +17,7 @@ module.exports = function() {
     _widgets[name] = instance;
   }
 
-  host.after('render', function() {
+  function renderWidget() {
     host.$('[type="date"],[type="time"],[type="datetime"],[type="datetime-local"]')
     .each(function(i, field) {
       field.type = 'text';
@@ -29,7 +29,10 @@ module.exports = function() {
         }
       }).render());
     });
-  });
+  }
+
+  host.after('render', renderWidget);
+  host.after('addField', renderWidget);
 
   plugin.getWidget = function(name) {
     return _widgets[name];
