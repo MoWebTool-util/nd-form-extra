@@ -59,6 +59,10 @@ module.exports = Form.extend({
         }
       });
     }
+  },
+
+  getItem: function(name) {
+    return this.$('[name="' + name + '"]').closest('[data-role="form-item"]');
   }
 
 });
