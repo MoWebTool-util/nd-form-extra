@@ -31,12 +31,12 @@ module.exports = Form.extend({
       label: '提交',
       type: 'submit',
       role: 'form-submit'
-    }],
+    }]
+  },
 
-    afterRender: function() {
-      // 队列，用于异步处理
-      this.queue = new Queue();
-    }
+  initProps: function() {
+    // 队列，用于异步处理
+    this.queue = new Queue();
   },
 
   getItem: function(name) {
