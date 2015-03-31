@@ -5,8 +5,6 @@
 
 'use strict';
 
-var $ = require('jquery');
-
 var Form = require('nd-form');
 var FD = require('nd-formdata');
 var Queue = require('nd-queue');
@@ -14,10 +12,6 @@ var Queue = require('nd-queue');
 module.exports = Form.extend({
 
   attrs: {
-    // name: '',
-    // action: '',
-    // method: 'PUT',
-
     plugins: require('./src/plugins'),
 
     // 表单数据
@@ -26,13 +20,6 @@ module.exports = Form.extend({
     dataParser: function() {
       return new FD(this.getElements()).toJSON();
     },
-
-    // 数据相符校验，用于处理 formData 与 fields 匹配
-    // matchers: {
-      // test: function(value, match) {
-      // return value === match[0].value;
-      // }
-    // },
 
     fields: [],
 
@@ -46,18 +33,9 @@ module.exports = Form.extend({
       role: 'form-submit'
     }],
 
-    setup: function() {
-      var that = this;
-
+    afterRender: function() {
       // 队列，用于异步处理
       this.queue = new Queue();
-
-      // 插件
-      $.each(this.get('plugins'), function(i, item) {
-        if (!item.disabled) {
-          that.addPlugin(item.name, item.plugin, item.callbacks);
-        }
-      });
     }
   },
 
