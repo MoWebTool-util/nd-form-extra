@@ -7,27 +7,15 @@
 
 module.exports = {
   selector: {
-    // disabled: true,
-    name: 'selector',
     plugin: require('./plugins/selector')
-    // callbacks needed
   },
   calendar: {
-    // disabled: true,
-    name: 'calendar',
     plugin: require('./plugins/calendar')
-    // callbacks needed
   },
   validator: {
-    // disabled: true,
-    name: 'validator',
     plugin: require('./plugins/validator')
-    // callbacks needed
   },
   uploader: {
-    // disabled: true,
-    name: 'uploader',
     plugin: require('./plugins/uploader')
-    // callbacks needed
   }
 };
