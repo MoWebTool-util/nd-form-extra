@@ -6,22 +6,70 @@
 'use strict';
 
 var Form = require('nd-form');
-var FD = require('nd-formdata');
-var Queue = require('nd-queue');
+var Calendar = require('nd-calendar');
+var Select = require('nd-select');
+var Upload = require('nd-upload');
+var Validator = require('nd-validator');
 
 module.exports = Form.extend({
 
+  Plugins: [Calendar, Select, Validator, Upload],
+
   attrs: {
-    plugins: require('./src/plugins'),
+    pluginCfg: {
+      Calendar: {
+        listeners: {
+          start: function() {
+            this.host.after('addField', this.execute);
+          }
+        }
+      },
+      Select: {
+        listeners: {
+          start: function() {
+            this.host.after('addField', this.execute);
+          }
+        }
+      },
+      Validator: {
+        listeners: {
+          start: function() {
+            var plugin = this;
 
-    // 表单数据
-    formData: {},
+            plugin.on('export', function(instance) {
+              // 异步，添加到队列
+              plugin.host.queue.use(function(next) {
+                instance.execute(function(err) {
+                  if (!err) {
+                    next();
+                  }
+                });
+              });
+            });
+          }
+        }
+      },
+      Upload: {
+        listeners: {
+          start: function() {
+            var plugin = this;
 
-    dataParser: function() {
-      return new FD(this.getElements()).toJSON();
+            plugin.on('export', function(instance) {
+              // 异步，添加到队列
+              plugin.host.queue.use(function(next) {
+                instance.execute(function(err) {
+                  if (!err) {
+                    next();
+                  }
+                });
+              });
+            });
+
+            this.host.after('addField', this.execute);
+          }
+        }
+      }
     },
-
-    fields: [],
 
     buttons: [{
       label: '取消',
@@ -32,11 +80,6 @@ module.exports = Form.extend({
       type: 'submit',
       role: 'form-submit'
     }]
-  },
-
-  initProps: function() {
-    // 队列，用于异步处理
-    this.queue = new Queue();
   }
 
 });
