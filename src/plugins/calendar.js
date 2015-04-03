@@ -20,9 +20,15 @@ module.exports = function() {
   function renderWidget() {
     host.$('[type="date"],[type="time"],[type="datetime"],[type="datetime-local"]')
     .each(function(i, field) {
+      var hasTime = (field.getAttribute('type').indexOf('time') !== -1);
       field.type = 'text';
       addWidget(field.name, new Calendar({
         trigger: field,
+        time: {
+          hour: hasTime,
+          minute: hasTime,
+          second: hasTime
+        },
         align:  {
           baseElement: field,
           baseXY: [0, '100%']
