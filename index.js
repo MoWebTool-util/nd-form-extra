@@ -1,6 +1,6 @@
 /**
- * @module: nd-form-extra
- * @author: crossjs <liwenfu@crossjs.com> - 2015-03-16 13:28:48
+ * @module FormExtra
+ * @author crossjs <liwenfu@crossjs.com>
  */
 
 'use strict';
