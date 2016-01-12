@@ -1,6 +1,6 @@
 {
   "name": "nd-form-extra",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "集成了 select, calendar, upload, validator 等通用表单插件的 nd-form",
   "keywords": [],
   "homepage": "https://github.com/ndfront/nd-form-extra",
@@ -24,7 +24,7 @@
       "nd-select": "1.0.0",
       "nd-calendar": "1.0.1",
       "nd-editor": "1.0.1",
-      "nd-upload": "1.0.2",
+      "nd-upload": "1.0.3",
       "nd-validator": "1.0.1"
     },
     "devDependencies": {
