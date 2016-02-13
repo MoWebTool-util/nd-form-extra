@@ -5,6 +5,7 @@
 
 'use strict';
 
+var __ = require('nd-i18n');
 var Form = require('nd-form');
 var Select = require('nd-select');
 var Calendar = require('nd-calendar');
@@ -18,11 +19,11 @@ module.exports = Form.extend({
 
   attrs: {
     buttons: [{
-      label: '取消',
+      label: __('取消'),
       type: 'button',
       role: 'form-cancel'
     }, {
-      label: '提交',
+      label: __('提交'),
       type: 'submit',
       role: 'form-submit'
     }]
