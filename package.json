@@ -22,13 +22,13 @@
   "licenses": "MIT",
   "main": "index.js",
   "dependencies": {
-    "nd-form": "^3.0.0",
-    "nd-select": "^3.0.0",
-    "nd-calendar": "^3.0.0",
-    "nd-editor": "^3.0.0",
+    "nd-form": "^3.0.4",
+    "nd-select": "^3.0.1",
+    "nd-calendar": "^3.0.2",
+    "nd-editor": "^3.0.1",
     "nd-i18n": "^3.0.0",
-    "nd-upload": "^3.0.0",
-    "nd-validator": "^3.0.0"
+    "nd-upload": "^3.0.2",
+    "nd-validator": "^3.0.1"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
